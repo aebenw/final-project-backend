@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :followed_channels, class_name: "ChannelFollower", foreign_key: "follower_id"
 
-  #Self - joining
+  #Self joining logic for a user to user friendship
 
   has_many :active_relationships, class_name:  "Relationship",
                                 foreign_key: "follower_id",
@@ -18,6 +18,8 @@ class User < ApplicationRecord
                                 dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :activities, class_name: "Activity", foreign_key: :actor_id
+  has_many :notifications, class_name: "Activity", foreign_key: :receiver
 
   #active_storage profile pic
   has_one_attached :profile
@@ -35,14 +37,9 @@ class User < ApplicationRecord
 
 
   def friends
-
-    friends = followers + following
-    filter = friends.select{|x| x.id !=  self.id }
-    return filter
+    all_friends = followers + following
+    friends_wo_user = all_friends.select{|user| user.id !=  self.id }
+    return friends_wo_user
   end
-
-
-
-
 
 end

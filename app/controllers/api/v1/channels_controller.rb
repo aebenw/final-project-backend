@@ -1,6 +1,5 @@
 module Api
   module V1
-
     class ChannelsController < ApplicationController
 
       def index
@@ -9,7 +8,6 @@ module Api
       end
 
       def show
-
         channel = Channel.find(params[:id])
         render json: channel
       end
@@ -27,19 +25,16 @@ module Api
         ChannelFollower.create(channel_id: channel_params[:id], follower_id: channel_params[:user_id])
         user = ShallowUserSerializer.new(User.find(channel_params[:user_id]))
         channel = ShallowChannelSerializer.new(Channel.find(channel_params[:id]))
-
-      render json: {user: user, channel: channel}
-
+        render json: {user: user, channel: channel}
       end
 
       def channel_unfollower
-        cf = ChannelFollower.find_by(channel_id: channel_params[:id], follower_id: channel_params[:user_id])
+        channel_follower = ChannelFollower.find_by(channel_id: channel_params[:id], follower_id: channel_params[:user_id])
         user = ShallowUserSerializer.new(cf.follower)
         channel = ShallowChannelSerializer.new(cf.channel)
 
-        cf.destroy
-
-      render json: {user: user, channel: channel}
+        channel_follower.destroy
+        render json: {user: user, channel: channel}
 
       end
 
@@ -49,7 +44,6 @@ module Api
       render json: {message: "deleted"}
     end
 
-
       private
 
       def channel_params
@@ -57,9 +51,5 @@ module Api
       end
 
     end
-
-
-
-
   end
 end

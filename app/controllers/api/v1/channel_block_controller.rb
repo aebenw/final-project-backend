@@ -5,20 +5,18 @@ module Api
     class ChannelBlockController < ApplicationController
 
       def create
-        
-        cb = ChannelBlock.new(cb_params)
-        if cb.save
-
-          res = cb.channel
+        channelblock = ChannelBlock.new(channel_block_params)
+        if channelblock.save
+          res = channelblock.channel
           render json: res
-        else render json: {errors: c.errors, params: cb_params}
+        else render json: {errors: c.errors, params: channel_block_params}
         end
 
       end
 
       private
 
-      def cb_params
+      def channel_block_params
         params.require(:channel_block).permit(:block_id, :channel_id)
       end
 

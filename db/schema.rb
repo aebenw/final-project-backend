@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_192431) do
+ActiveRecord::Schema.define(version: 2019_01_21_231832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 2019_01_17_192431) do
     t.datetime "created_at", null: false
     t.index ["filename"], name: "index_active_storage_blobs_on_filename"
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "subject_id", null: false
+    t.string "subject_type", null: false
+    t.integer "object_id"
+    t.string "object_type"
+    t.string "name", null: false
+    t.boolean "checked", null: false
+    t.integer "actor_id", null: false
+    t.integer "receiver_id"
+    t.index ["actor_id"], name: "index_activities_on_actor_id"
+    t.index ["receiver_id"], name: "index_activities_on_receiver_id"
+    t.index ["subject_id"], name: "index_activities_on_subject_id"
+    t.index ["subject_type"], name: "index_activities_on_subject_type"
   end
 
   create_table "blocks", force: :cascade do |t|
