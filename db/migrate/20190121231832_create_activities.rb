@@ -1,7 +1,7 @@
 class CreateActivities < ActiveRecord::Migration[5.2]
   def change
     create_table :activities do |t|
-      t.datetime :created_at, null: false
+      t.datetime :created_at
       t.integer :subject_id, null: false
       t.string :subject_type, null: false
       # In a many to many, there needs to be a
@@ -17,6 +17,6 @@ class CreateActivities < ActiveRecord::Migration[5.2]
     add_index :activities, :subject_id
     add_index :activities, :subject_type
     add_index :activities, :actor_id
-    add_index :activities, :receiver_id
+    # add_index :activities, :receiver_id
   end
 end

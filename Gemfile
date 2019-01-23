@@ -7,7 +7,7 @@ gem 'rails', '~> 5.2.1'
 # AWS for file storage
 
 gem 'dotenv-rails'
-
+gem  'rspec'
 gem "aws-sdk-s3", require: false
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'

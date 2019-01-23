@@ -5,7 +5,7 @@ class ShallowUserSerializer < ActiveModel::Serializer
       begin
         # FOR RUNNING JUST ACTIVE RECORD
         short_url = Rails.application.routes.url_helpers.rails_blob_path(object.file, only_path: true)
-        url = "https://36cda730.ngrok.io" + short_url
+        url = "https://729b7733.ngrok.io" + short_url
 
         # FOR RUNNING WITH s3
         # url = object.profile.service_url

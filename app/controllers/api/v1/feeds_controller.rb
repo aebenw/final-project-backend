@@ -5,7 +5,9 @@ module Api
     class FeedsController < ApplicationController
 
       def show
-        render json: Feed.initialize(params[:id])
+        feed = Feed.initialize(params[:id])
+        
+        render json: {feed: feed}
       end
 
     private

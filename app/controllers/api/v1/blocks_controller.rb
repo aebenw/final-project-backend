@@ -30,7 +30,7 @@ module Api
           channel = Channel.find(block_params[:channel])
           block.channels.push(channel)
 
-          block.addActivity(channel.users[0])
+          block.add_activity(block_params[:channel])
 
           render json: block
         end

@@ -7,13 +7,14 @@ class Block < ApplicationRecord
   #PDF/IMAGE attatched to block through ActiveStorage
   has_one_attached :file
 
-  after_create :create_activity
+  # after_create :activity_for_own_block_channel
 
-  def addActivity(channel_author)
-    if self.block.user == channel_author
-      activity_for_own_block_channel
+  def add_activity(channel_id)
+    channel = Channel.find(channel_id)
+    if self.user == channel.users[0]
+      activity_for_own_block_channel(channel)
     else
-      activity_for_another_channel(channel_author)
+      activity_for_another_channel(channel)
     end
 
   end
@@ -21,13 +22,13 @@ class Block < ApplicationRecord
   # If one adds a block to one's own channel
     # Just render action to friends' feeds
 
-  def activity_for_own_block_channel
+  def activity_for_own_block_channel(channel)
     Activity.create(
-      subject: self.block,
-      object: self.channel,
+      subject: self,
+      object: channel,
       name: "ADD_BLOCK_TO_OWN_CHANNEL",
       checked: true,
-      actor: self.users[0]
+      actor: self.user
     )
   end
 
@@ -38,14 +39,14 @@ class Block < ApplicationRecord
     # Render to friend's feeds
       # That author of block added to x channel
 
-  def activity_for_another_channel(channel_author)
+  def activity_for_another_channel(channel)
     Activity.create(
-      subject: self.block,
-      object: self.channel,
+      subject: self,
+      object: channel,
       name: "ADD_BLOCK_TO_OTHER_CHANNEL",
       checked: false,
-      actor: self.block.user,
-      receiver: channel_author
+      actor: self.user,
+      receiver: channel.users[0]
     )
   end
 

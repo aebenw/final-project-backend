@@ -9,18 +9,18 @@ class Relationship < ApplicationRecord
   where("(relationships.followed_id = ? OR relationships.follower_id = ?)", user.id, user.id)
   end
 
-  after_create :create_activity
+  after_create :add_activity, :populate_feeds
 
   private
 
-  def create_activity
-    Activity.create(
-      subject: self,
-      name: "FRIENDSHIP",
-      checked: false,
-      actor: self.follower,
-      receiver: self.followed
-    )
+  def add_activity
+    # byebug
+    Activity.create(subject: self, name: "FRIENDSHIP", checked: false, actor: self.follower, receiver: self.followed)
+  end
+
+  def populate_feeds
+    follower.feed.activities << followed.activities
+    followed.feed.activities << follower.activities
   end
 
 

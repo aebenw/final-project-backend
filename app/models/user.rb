@@ -23,9 +23,7 @@ class User < ApplicationRecord
 
   #active_storage profile pic
   has_one_attached :profile
-
-
-  #bcrypt
+  has_one :feed
   has_secure_password
 
   #validations
@@ -35,11 +33,16 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password, length: { minimum: 4 }
 
-
+  after_create :create_and_populate_feed
   def friends
     all_friends = followers + following
     friends_wo_user = all_friends.select{|user| user.id !=  self.id }
     return friends_wo_user
+  end
+
+  private
+  def create_and_populate_feed
+    Feed.find_or_create_by(user_id: self.id)
   end
 
 end

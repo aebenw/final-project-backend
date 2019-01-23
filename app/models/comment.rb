@@ -6,14 +6,16 @@ class Comment < ApplicationRecord
 
   private
 
-  def activity_for_block_author
+  def create_activity
+
     Activity.create(
       subject: self,
-      name: "block_comment",
+      name: "BLOCK_COMMENT",
       checked: false,
       actor: self.user,
       receiver: self.block.user
     )
+
   end
 
 
