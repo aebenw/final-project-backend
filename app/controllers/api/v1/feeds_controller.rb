@@ -5,9 +5,17 @@ module Api
     class FeedsController < ApplicationController
 
       def show
-        feed = Feed.initialize(params[:id])
-        
-        render json: {feed: feed}
+        res = Hash.new
+        feed = FeedSerializer.new(User.find(params[:id]).feed).activities
+
+        if feed.length >= 10
+          initial_feed = feed.slice!(-10..-1)
+          res["initial"] = initial_feed
+        end
+
+        res["feed"] = feed
+
+        render json: res
       end
 
     private
