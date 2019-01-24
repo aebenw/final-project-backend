@@ -9,10 +9,10 @@ class ChannelFollower < ApplicationRecord
   def create_activity
     Activity.create(
       subject: self.channel,
+      object: self.channel.users[0],
       name: "FOLLOW_CHANNEL",
       checked: false,
       actor: self.follower,
-      receiver: self.channel.users[0]
     )
   end
 

@@ -15,7 +15,12 @@ class Relationship < ApplicationRecord
 
   def add_activity
     # byebug
-    Activity.create(subject: self, name: "FRIENDSHIP", checked: false, actor: self.follower, receiver: self.followed)
+    Activity.create(
+      subject: self,
+      name: "FRIENDSHIP",
+      checked: false,
+      actor: self.follower,
+      receiver: self.followed)
   end
 
   def populate_feeds

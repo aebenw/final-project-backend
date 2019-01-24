@@ -10,6 +10,7 @@ class Comment < ApplicationRecord
 
     Activity.create(
       subject: self,
+      object: self.block,
       name: "BLOCK_COMMENT",
       checked: false,
       actor: self.user,

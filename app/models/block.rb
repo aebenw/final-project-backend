@@ -28,7 +28,7 @@ class Block < ApplicationRecord
       object: channel,
       name: "ADD_BLOCK_TO_OWN_CHANNEL",
       checked: true,
-      actor: self.user
+      actor: self.user,
     )
   end
 
