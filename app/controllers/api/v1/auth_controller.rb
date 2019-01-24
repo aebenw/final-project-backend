@@ -1,6 +1,5 @@
 module Api
   module V1
-
     class AuthController < ApplicationController
 
       def create
@@ -25,8 +24,6 @@ module Api
         else
           render json: {error: 'Invalid token'}, status: 401
         end
-
-
       end
 
       private

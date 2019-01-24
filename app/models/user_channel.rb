@@ -14,4 +14,5 @@ class UserChannel < ApplicationRecord
       actor: self.channel.users[0]
     )
   end
+  
 end

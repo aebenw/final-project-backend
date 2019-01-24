@@ -7,7 +7,6 @@ class Comment < ApplicationRecord
   private
 
   def create_activity
-
     Activity.create(
       subject: self,
       object: self.block,
@@ -16,8 +15,6 @@ class Comment < ApplicationRecord
       actor: self.user,
       receiver: self.block.user
     )
-
   end
-
 
 end

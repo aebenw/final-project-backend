@@ -1,7 +1,5 @@
 module Api
   module V1
-
-
     class ChannelBlockController < ApplicationController
 
       def create
@@ -20,10 +18,6 @@ module Api
         params.require(:channel_block).permit(:block_id, :channel_id)
       end
 
-
     end
-
-
-
   end
 end

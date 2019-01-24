@@ -39,6 +39,8 @@ class ActivitySerializer < ActiveModel::Serializer
       case object.name
       when 'FRIENDSHIP'
         ShallowUserSerializer.new(object.receiver)
+      when 'FOLLOW_CHANNEL'
+        ShallowUserSerializer.new(object.object)
       when "BLOCK_COMMENT"
         ActivityBlockSerializer.new(object.object)
       else

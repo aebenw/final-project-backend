@@ -14,7 +14,6 @@ class Relationship < ApplicationRecord
   private
 
   def add_activity
-    # byebug
     Activity.create(
       subject: self,
       name: "FRIENDSHIP",
@@ -27,6 +26,5 @@ class Relationship < ApplicationRecord
     follower.feed.activities << followed.activities
     followed.feed.activities << follower.activities
   end
-
 
 end

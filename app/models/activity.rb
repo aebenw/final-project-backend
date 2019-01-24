@@ -6,8 +6,6 @@ class Activity < ApplicationRecord
   has_many :feed_activities
   has_many :feeds, through: :feed_activities
 
-  # validates :receiver, presence: true
-
   after_create :populate_feeds
 
   private

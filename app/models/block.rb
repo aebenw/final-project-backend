@@ -7,8 +7,6 @@ class Block < ApplicationRecord
   #PDF/IMAGE attatched to block through ActiveStorage
   has_one_attached :file
 
-  # after_create :activity_for_own_block_channel
-
   def add_activity(channel_id)
     channel = Channel.find(channel_id)
     if self.user == channel.users[0]

@@ -20,10 +20,11 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :activities, class_name: "Activity", foreign_key: :actor_id
   has_many :notifications, class_name: "Activity", foreign_key: :receiver
+  has_one :feed
+
 
   #active_storage profile pic
   has_one_attached :profile
-  has_one :feed
   has_secure_password
 
   #validations

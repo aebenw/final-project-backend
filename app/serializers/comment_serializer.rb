@@ -5,5 +5,4 @@ class CommentSerializer < ActiveModel::Serializer
     ShallowUserSerializer.new(object.user)
   end
 
-
 end
