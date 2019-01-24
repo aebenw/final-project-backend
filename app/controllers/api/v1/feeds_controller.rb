@@ -5,6 +5,7 @@ module Api
     class FeedsController < ApplicationController
 
       def show
+        byebug
         res = Hash.new
         feed = FeedSerializer.new(User.find(params[:id]).feed).activities
         if feed.length >= 10
@@ -13,7 +14,7 @@ module Api
         end
 
         res["feed"] = feed
-        byebug
+
         render json: res
       end
 
