@@ -13,8 +13,7 @@ module Api
         end
 
         res["feed"] = feed
-        puts res
-        render json: {res: res}
+        render json: res
       end
 
     private
