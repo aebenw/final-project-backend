@@ -9,8 +9,6 @@ Rails.application.routes.draw do
       post '/channels/followers', to: 'channels#channel_follower'
       delete '/channels/followers', to: 'channels#channel_unfollower'
 
-
-
       resources :feeds, only: [:show]
       resources :comments, only: [:create]
       resources :blocks
@@ -19,14 +17,7 @@ Rails.application.routes.draw do
       resources :relationships, only: [:create, :destroy, :index]
     end
   end
-
+  
   post '/rails/active_storage/direct_uploads' => 'direct_uploads#create'
-  # resources :active_storage
 
-  # namespace :rails do
-  #   namespace :v1 do
-  #
-  #     resources :active_storage
-  #   end
-  # end
 end

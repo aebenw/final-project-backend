@@ -8,7 +8,6 @@ module Api
       end
 
       def show
-
         block = Block.find(params[:id])
         render json: block
       end
@@ -28,8 +27,11 @@ module Api
 
             end
         if block.save
-          channels_arr = params[:channels].map{|x| Channel.find(x)}
-          block.channels.push(channels_arr)
+          channel = Channel.find(block_params[:channel])
+          block.channels.push(channel)
+
+          block.add_activity(block_params[:channel])
+
           render json: block
         end
       end

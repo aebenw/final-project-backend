@@ -6,6 +6,3 @@ class ShallowCommentSerializer < ActiveModel::Serializer
   end
 
 end
-
-# if above gives problem, test cases for serializer(s) vs comment
-# object.is_a?(ShallowCommentSerializerComment)
