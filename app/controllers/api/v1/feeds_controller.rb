@@ -13,7 +13,7 @@ module Api
         end
 
         res["feed"] = feed
-
+        byebug
         render json: res
       end
 
