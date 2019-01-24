@@ -8,6 +8,7 @@ module Api
         # byebug
         res = Hash.new
         feed = FeedSerializer.new(User.find(params[:id]).feed).activities
+        byebug
         if feed.length >= 10
           initial_feed = feed.slice!(-10..-1)
           res["initial"] = initial_feed
