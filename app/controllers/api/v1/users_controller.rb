@@ -13,13 +13,16 @@ module Api
       end
 
       def update
+
+        byebug
         user = User.find(user_params[:id])
-        user.update(name: user_params[:name], description: user_params[:description])
+        user.name= user_params[:name]
+        user.description =  user_params[:description]
         if user_params[:profile]
           blob = ActiveStorage::Blob.find_by(filename: user_params[:profile])
           user.profile.attach(blob)
         end
-        user.save
+        user.save(validate: false)
         render json: user
       end
 
