@@ -2,18 +2,6 @@ class ActivitySerializer < ActiveModel::Serializer
   attributes :id, :actor, :objectt, :subjectt, :receiver, :name
   attr_accessor :receiver, :action_object
 
-  #NOTES ON REPEATING PROCESSES
-  #FOR ADD_BLOCK_TO_OTHER_CHANNEL
-    #Actor appears as both actor and as the author of the subjectt
-    #Don't need the comments
-  #BLOCK_COMMENT
-    #Actor appears as both actor and as the author of the subjectt
-  #CREATE_CHANNEL
-    #Actor appears as both actor and as the author of the subjectt
-
-
-  #Relationship and Follow Channel seem to be ok
-
   def subjectt
     case object.name
     when 'ADD_BLOCK_TO_OWN_CHANNEL'
@@ -50,19 +38,5 @@ class ActivitySerializer < ActiveModel::Serializer
       nil
     end
   end
-
-  # def actor
-  #   ShallowUserSerializer.new(object.actor)
-  # end
-  #
-  # def receiver
-  #   if object.receiver
-  #     ShallowUserSerializer.new(object.receiver)
-  #   else
-  #     nil
-  #   end
-  # end
-
-
 
 end
