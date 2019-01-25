@@ -13,8 +13,6 @@ module Api
       end
 
       def update
-
-        byebug
         user = User.find(user_params[:id])
         user.name= user_params[:name]
         user.description =  user_params[:description]
