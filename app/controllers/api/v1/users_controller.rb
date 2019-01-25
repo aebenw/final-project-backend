@@ -37,10 +37,19 @@ module Api
         end
       end
 
+      def logout
+        feed = User.find(user_params[:id])
+        params[:user][:seen_activities].map{|activity_id|
+          feed_activity = FeedActivity.find_by(feed_id: feed.id, activity_id: activity_id)
+          feed_activity.seen = false
+        }
+        render json: {message: "user logged out"}
+      end
+
       private
 
       def user_params
-        params.require(:user).permit(:email, :password, :name, :profile, :description, :id)
+        params.require(:user).permit(:email, :password, :name, :profile, :description, :id, :seen_activities)
       end
 
     end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/ChannelBlock', to: 'channel_block#create'
       post '/channels/followers', to: 'channels#channel_follower'
       delete '/channels/followers', to: 'channels#channel_unfollower'
+      patch '/logout', to: 'users#logout'
 
       resources :feeds, only: [:show]
       resources :comments, only: [:create]
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
       resources :relationships, only: [:create, :destroy, :index]
     end
   end
-  
+
   post '/rails/active_storage/direct_uploads' => 'direct_uploads#create'
 
 end

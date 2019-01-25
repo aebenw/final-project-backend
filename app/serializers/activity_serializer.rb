@@ -1,5 +1,5 @@
 class ActivitySerializer < ActiveModel::Serializer
-  attributes :actor, :objectt, :subjectt, :receiver, :name
+  attributes :id, :actor, :objectt, :subjectt, :receiver, :name
   attr_accessor :receiver, :action_object
 
   #NOTES ON REPEATING PROCESSES
@@ -62,6 +62,7 @@ class ActivitySerializer < ActiveModel::Serializer
   #     nil
   #   end
   # end
+
 
 
 end

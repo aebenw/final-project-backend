@@ -6,14 +6,16 @@ module Api
 
       def show
         res = Hash.new
-        feed = FeedSerializer.new(User.find(params[:id]).feed).activities
-        if feed.length >= 10
-          initial_feed = feed.slice!(-10..-1)
-          res["initial"] = initial_feed
-        end
+        user_feed = User.find(params[:id]).feed
+        # byebug
+        if user_feed.activities.length > 0
 
-        res["feed"] = feed
-        render json: res
+          feed = FeedSerializer.new(user_feed).activities
+          res["feed"] = feed
+        else
+          res["noMoreContent"] = "No more unseend friend activity! Add more friends to see more content."
+        end
+          render json: res
       end
 
     private
