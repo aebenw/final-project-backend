@@ -8,7 +8,7 @@ class ChannelBlock < ApplicationRecord
 
   def add_activity
     if self.block.user == self.channel.users[0]
-      self.block.activity_for_own_block_channel
+      self.block.activity_for_own_block_channel(self.channel)
     else
       activity_for_another_block
     end

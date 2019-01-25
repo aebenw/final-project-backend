@@ -30,7 +30,7 @@ module Api
           channel = Channel.find(block_params[:channel])
           block.channels.push(channel)
 
-          block.add_activity(block_params[:channel])
+          # block.add_activity(block_params[:channel])
 
           render json: block
         end
@@ -39,7 +39,7 @@ module Api
       private
 
       def block_params
-        params.require(:block).permit(:content, :user_id, :file)
+        params.require(:block).permit(:content, :user_id, :file, :channel)
       end
 
     end
