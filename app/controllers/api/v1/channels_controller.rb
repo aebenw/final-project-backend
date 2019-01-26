@@ -30,8 +30,8 @@ module Api
 
       def channel_unfollower
         channel_follower = ChannelFollower.find_by(channel_id: channel_params[:id], follower_id: channel_params[:user_id])
-        user = ShallowUserSerializer.new(cf.follower)
-        channel = ShallowChannelSerializer.new(cf.channel)
+        user = ShallowUserSerializer.new(channel_follower.follower)
+        channel = ShallowChannelSerializer.new(channel_follower.channel)
 
         channel_follower.destroy
         render json: {user: user, channel: channel}
