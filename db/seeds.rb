@@ -54,8 +54,8 @@ def channel_follower
   end
 end
 
-30.times { |x|
-  User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: "test")
+20.times { |x|
+  User.create(name: Faker::Name.first_name, email: Faker::Internet.email, password: "test", description: Faker::Hipster.paragraphs(1).join)
 }
 
 100.times { |x|
@@ -73,7 +73,7 @@ end
 50.times  { |x|
   # NEED TO ADD IMG/CONTENT
   user = User.all.sample
-  images = ["http://www.designcurial.com/Uploads/NewsArticle/6061012/main.jpg", "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fimage.sportsmansguide.com%2Fadimgs%2Fl%2F1%2F165624_ts.jpg&f=1", "http://1.bp.blogspot.com/-XtaaG1IhAp0/UATsGm1WGPI/AAAAAAAAAxo/10AaR2rXsro/s1600/IMG_3120.jpg", "http://images.adsttc.com/media/images/5038/1dd0/28ba/0d59/9b00/0f73/large_jpg/stringio.jpg?1414087929", "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic01.nyt.com%2Fimages%2F2013%2F11%2F04%2Farts%2Fjp-barragan-2%2Fjp-barragan-2-master1050.jpg&f=1", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjV5vCjzPreAhUhnuAKHbOdCoAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.cntraveler.com%2Factivities%2Fmexico-city%2Fluis-barragan-house-and-studio&psig=AOvVaw1fGal2XYkspltuXmm7ZcKZ&ust=1543615033520400", "http://i1022.photobucket.com/albums/af341/1ina100/OscarTuazon_2.jpg", "https://dg19s6hp6ufoh.cloudfront.net/pictures/612983469/large/tumblr_mgpnu3JBoc1qivanvo1_1280.jpeg?1461156028", "https://www.pablopicasso.org/images/paintings/ma-jolie.jpg"]
+  images = ["http://www.designcurial.com/Uploads/NewsArticle/6061012/main.jpg", "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fimage.sportsmansguide.com%2Fadimgs%2Fl%2F1%2F165624_ts.jpg&f=1", "http://1.bp.blogspot.com/-XtaaG1IhAp0/UATsGm1WGPI/AAAAAAAAAxo/10AaR2rXsro/s1600/IMG_3120.jpg", "http://images.adsttc.com/media/images/5038/1dd0/28ba/0d59/9b00/0f73/large_jpg/stringio.jpg?1414087929", "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic01.nyt.com%2Fimages%2F2013%2F11%2F04%2Farts%2Fjp-barragan-2%2Fjp-barragan-2-master1050.jpg&f=1", "http://www.ronenbekerman.com/wp-content/uploads/2011/05/casa-barragan-xoio-renderings-preview.jpg", "http://i1022.photobucket.com/albums/af341/1ina100/OscarTuazon_2.jpg", "https://dg19s6hp6ufoh.cloudfront.net/pictures/612983469/large/tumblr_mgpnu3JBoc1qivanvo1_1280.jpeg?1461156028", "https://subbuck.s3.amazonaws.com/3NGuZpDj2GeGs1Lddmejxo4N?response-content-disposition=inline%3B%20filename%3D%221924%20Mandolin%20and%20Guitar.jpg%22%3B%20filename%2A%3DUTF-8%27%271924%2520Mandolin%2520and%2520Guitar.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJGVFDYBGJB2E64OA%2F20190126%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190126T213315Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=8f4acf69149d8b97f0948144cba08a37265ea6e953c84c06d2ccabe072e23938"]
   img = images.sample
   numbers = [1..4].sample
 
