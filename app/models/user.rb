@@ -41,6 +41,11 @@ class User < ApplicationRecord
     return friends_wo_user
   end
 
+  def reset_feed
+    feed_activity = FeedActivity.where(feed_id: self.feed.id, seen: true)
+    feed_activity.map{ |activity| activity.seen = false}
+  end
+
   private
   def create_and_populate_feed
     Feed.find_or_create_by(user_id: self.id)

@@ -8,6 +8,7 @@ module Api
           serialized_data = ActiveModelSerializers::Adapter::Json.new(
             UserSerializer.new(@user)
           ).serializable_hash
+          @user.reset_feed
           token = encode({jwt: @user.id})
             render json: {jwt: token, user: serialized_data}
         else
@@ -20,6 +21,7 @@ module Api
         decoded_token = decode(token)[0]["jwt"]
         user = User.find_by(id: decoded_token)
         if user
+          user.reset_feed
           render json: user
         else
           render json: {error: 'Invalid token'}, status: 401
